@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using Application.DTOs;
+using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Application.Interfaces
 {
    public interface IOrderProductApplication
     {
-        Task<bool> AddOrderProduct(OrderProducts orderProducts);
+        Task AddOrderProduct(OrderProductDTO orderProducts);
     }
 }

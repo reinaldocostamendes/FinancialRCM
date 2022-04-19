@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces;
 using Entities.Entities;
 using Infrastruture.Configurations;
+using Infrastruture.Repository.Generics;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,54 +11,56 @@ using System.Threading.Tasks;
 
 namespace Infrastruture.Repository
 {
-    public class OrderRepository 
+    public class OrderRepository : GenericRepository<Order>, IOrder
     {
-        private readonly Context _context;
+        private readonly DbContextOptions<FinancialContext> dbContextOptions;
 
-        public OrderRepository(Context context)
+        public OrderRepository(DbContextOptions<FinancialContext> dbContextOptions)
         {
-            _context = context;
+            this.dbContextOptions = dbContextOptions;
         }
 
         public async Task AddOrder(Order order)
         {
-            await _context.AddAsync(order);
-            await _context.SaveChangesAsync();
+            await base.Put(order);    
         }
 
         public async Task DeleteOrder(Guid id)
         {
-            var OrderToDelete = await _context.Document.FindAsync(id);
-            _context.Document.Remove(OrderToDelete);
-            await _context.SaveChangesAsync();
+            var order = await base.GetById(id);
+           await base.Delete(order);
         }
 
         public async Task<List<Order>> GetAllOrders()
         {
-            return await _context.Order.ToListAsync();
+            return await base.GetAll(); 
         }
 
-        public async Task<Order> GetOrdersByCustumer(Guid id)
+        public async Task<Order> GetOrdersByCode(long code)
         {
-            return await _context.Order.FirstOrDefaultAsync(o => o.Client == id);
+            using(var db = new FinancialContext(dbContextOptions))
+            {
+                return await db.Order.Where(o => o.Code == code).AsNoTracking().FirstOrDefaultAsync();
+            }
         }
 
-        public async Task<Order> GetOrdersBycCde(long code)
+        public async Task<Order> GetOrdersByClientId(Guid id)
         {
-            return await _context.Order.FirstOrDefaultAsync(o => o.Code == code);
+            using (var db = new FinancialContext(dbContextOptions))
+            {
+                return await db.Order.Where(o => o.Client == id).AsNoTracking().FirstOrDefaultAsync();
+            }
         }
 
-        public async Task  UpdateOrder(Order order)
+        public async Task UpdateOrder(Order order)
         {
-            _context.Order.Update(order);
-            await _context.SaveChangesAsync();
+            await base.Put(order);
         }
 
         public async Task UpdateOrderStatus(Order order)
         {
-            _context.Order.Update(order);
-            await _context.SaveChangesAsync();
+            await base.Put(order);
         }
     }
-    }
+}
 

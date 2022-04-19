@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces;
 using Entities.Entities;
 using Infrastruture.Configurations;
+using Infrastruture.Repository.Generics;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,51 +11,36 @@ using System.Threading.Tasks;
 
 namespace Infrastruture.Repository
 {
-    public class DocumentRepository
-         
-    {
-        private readonly Context _context;
+    public class DocumentRepository : GenericRepository<Document>, IDocument
 
-        public DocumentRepository(Context context)
-        {
-            _context = context;
-        }
+    {
+        private readonly DbContextOptions<FinancialContext> dbContextOptions;
 
         public async Task AddDocument(Document document)
         {
-            await _context.AddAsync(document);
-            await _context.SaveChangesAsync();
+          await base.Post(document); 
         }
 
         public async Task DeleteDocument(Guid id)
         {
-            var DocumentToDelete = await  _context.Document.FindAsync(id);
-            _context.Document.Remove(DocumentToDelete);
-            await _context.SaveChangesAsync();
+            var document = await base.GetById(id);
+            await base.Delete(document);
         }
 
         public async Task<List<Document>> GetAllDocuments()
         {
-            return await _context.Document.ToListAsync();
-        }
-
-        public async Task<Document> GetById(Guid id)
-        {
-           return await _context.Document.FindAsync(id);
+           return await base.GetAll();  
         }
 
         public async Task UpdateDocument(Document document)
         {
-            _context.Document.Update(document);
-            await _context.SaveChangesAsync();
+           await base.Put(document);
         }
 
         public async Task UpdatePayementDocument(Document document)
         {
-            document.Payed=true;
-            document.PaymentDate=DateTime.Now;
-            _context.Document.Update(document);
-            await _context.SaveChangesAsync();
+            document.Payed = true;
+            await base.Put(document);
         }
     }
 }

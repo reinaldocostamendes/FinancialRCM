@@ -1,4 +1,6 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
+using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
 using System;
@@ -11,10 +13,20 @@ namespace Application.Applications
 {
     public class OrderProductApplication : IOrderProductApplication
     {
-        IOrderProduct _iorderProduct;
-        public async Task<bool> AddOrderProduct(OrderProducts orderProducts)
+        private readonly IOrderProduct _iorderProduct;
+        private readonly IMapper _imapper;
+
+        public OrderProductApplication(IOrderProduct iorderProduct, IMapper imapper)
         {
-            return await _iorderProduct.AddOrderProduct(orderProducts);   
+            _iorderProduct = iorderProduct;
+            _imapper = imapper;
+        }
+
+        public async Task AddOrderProduct(OrderProductDTO orderProducts)
+        {
+            var op = new OrderProducts();
+            var opm =  _imapper.Map(orderProducts,op);    
+            await _iorderProduct.AddOrderProduct(opm);   
         }
     }
 }

@@ -9,13 +9,13 @@ namespace Domain.Interfaces
 {
     public  interface ICashBook
     {
-        Task<bool> AddCashBook(CashBook cashbook);
+        Task AddCashBook(CashBook cashbook);
 
         Task<List<CashBook>> GetAllCashBook();
         Task<CashBook> GetCashBookByOriginId(Guid Id);
         Task<CashBook> GetCashBookById(Guid id);
 
-        Task<bool> PutCashBook(CashBook cashbook);
+        Task PutCashBook(CashBook cashbook);
 
     }
 }

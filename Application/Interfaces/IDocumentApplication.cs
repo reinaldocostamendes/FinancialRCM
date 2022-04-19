@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using Application.DTOs;
+using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace Application.Interfaces
 {
    public  interface IDocumentApplication
     {
-        Task<bool> AddDocument(Document document);
+        Task AddDocument(DocumentDTO document);
         Task<List<Document>> GetAllDocuments(); 
         Task<Document> GetById(Guid id);
-        Task<bool> UpdateDocument(Document document);
+        Task UpdateDocument(DocumentDTO document);
 
-        Task<bool> UpdatePayementDocument(Document document);
+        Task UpdatePayementDocument(DocumentDTO document);
         Task DeleteDocument(Guid id);   
 
     }

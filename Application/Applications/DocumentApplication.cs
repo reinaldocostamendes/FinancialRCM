@@ -1,4 +1,6 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
+using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
 using System;
@@ -11,16 +13,20 @@ namespace Application.Applications
 {
     public class DocumentApplication : IDocumentApplication
     {
-        IDocument _idocument;
+       private readonly IDocument _idocument;
+        private readonly IMapper _imapper;
 
-        public DocumentApplication(IDocument idocument)
+        public DocumentApplication(IDocument idocument, IMapper imapper)
         {
             _idocument = idocument;
+            _imapper = imapper; 
         }
 
-        public async Task<bool> AddDocument(Document document)
+        public async Task AddDocument(DocumentDTO document)
         {
-            return await _idocument.AddDocument(document);    
+            var d = new Document();
+            var dm = _imapper.Map(document,d);
+            await _idocument.AddDocument(dm);    
         }
 
         public async Task DeleteDocument(Guid id)
@@ -38,14 +44,18 @@ namespace Application.Applications
             return await _idocument.GetById(id);  
         }
 
-        public async Task<bool> UpdateDocument(Document document)
+        public async Task UpdateDocument(DocumentDTO document)
         {
-            return await _idocument.UpdateDocument(document); 
+            var d = new Document();
+            var dm = _imapper.Map(document, d);
+            await _idocument.UpdateDocument(dm); 
         }
 
-        public async Task<bool> UpdatePayementDocument(Document document)
+        public async Task UpdatePayementDocument(DocumentDTO document)
         {
-            return await _idocument.UpdatePayementDocument(document);
+            var d = new Document();
+            var dm = _imapper.Map(document, d);
+            await _idocument.UpdatePayementDocument(dm);
         }
     }
 }

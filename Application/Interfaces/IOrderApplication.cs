@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using Application.DTOs;
+using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace Application.Interfaces
 {
     public  interface IOrderApplication
     {
-        Task<bool> AddOrder(Order order);
+        Task AddOrder(OrderDTO order);
         Task<List<Order>> GetAllOrders();
 
         Task<Order> GetOrdersByCode(long code);
         Task<Order> GetOrdersByCustumer(Guid id);
-        Task<bool> UpdateOrder(Order order);
-        Task<bool> UpdateOrderStatus(Order order);
+        Task UpdateOrder(OrderDTO order);
+        Task UpdateOrderStatus(OrderDTO order);
         Task DeleteOrder(Guid id);
 
     }

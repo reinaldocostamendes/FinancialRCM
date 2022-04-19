@@ -9,13 +9,13 @@ namespace Domain.Interfaces
 {
     public  interface IOrder
     {
-        Task<bool> AddOrder(Order order);
+        Task AddOrder(Order order);
         Task<List<Order>> GetAllOrders();
 
         Task<Order> GetOrdersByCode(long code);
-        Task<Order> GetOrdersByCustumer(Guid id);
-        Task<bool> UpdateOrder(Order order);
-        Task<bool> UpdateOrderStatus(Order order);
+        Task<Order> GetOrdersByClientId(Guid id);
+        Task UpdateOrder(Order order);
+        Task UpdateOrderStatus(Order order);
         Task DeleteOrder(Guid id);
 
     }

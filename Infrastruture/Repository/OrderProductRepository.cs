@@ -1,6 +1,8 @@
 ﻿using Domain.Interfaces;
 using Entities.Entities;
 using Infrastruture.Configurations;
+using Infrastruture.Repository.Generics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +11,18 @@ using System.Threading.Tasks;
 
 namespace Infrastruture.Repository
 {
-    public class OrderProductRepository 
+    public class OrderProductRepository : GenericRepository<OrderProducts>, IOrderProduct
     {
-        private readonly Context _context;
+        private readonly DbContextOptions<FinancialContext> dbContextOptions;
 
-        public OrderProductRepository(Context context)
+        public OrderProductRepository(DbContextOptions<FinancialContext> dbContextOptions)
         {
-            _context = context;
+            this.dbContextOptions = dbContextOptions;
         }
 
         public async Task AddOrderProduct(OrderProducts orderProducts)
         {
-            await _context.AddAsync(orderProducts);
-            await _context.SaveChangesAsync();
+          await base.Post(orderProducts);  
         }
     }
 }

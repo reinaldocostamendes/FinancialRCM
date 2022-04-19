@@ -1,6 +1,9 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
+using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
+using Infrastruture.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +14,20 @@ namespace Application.Applications
 {
     public class CashBookApplication : ICashBookApplication
     {
-        ICashBook _icashBook;
+        private readonly CashBookRepository _icashBook;
+        private readonly IMapper _imapper;
 
-        public CashBookApplication(ICashBook icashBook)
+        public CashBookApplication(CashBookRepository icashBook, IMapper imapper)
         {
             _icashBook = icashBook;
+            _imapper = imapper; 
         }
 
-        public async Task<bool> AddCashBook(CashBook cashbook)
+        public async Task AddCashBook(CashBookDTO cashbook)
         {
-           return  await _icashBook.AddCashBook(cashbook);
+            CashBook cb = new CashBook();
+            var cbm = _imapper.Map(cashbook, cb);
+             await _icashBook.AddCashBook(cbm);
         }
 
         public async Task<List<CashBook>> GetAllCashBook()
@@ -38,9 +45,11 @@ namespace Application.Applications
             return _icashBook.GetCashBookById(id);  
         }
 
-        public async Task<bool> PutCashBook(CashBook cashbook)
+        public async Task PutCashBook(CashBookDTO cashbook)
         {
-           return await _icashBook.PutCashBook(cashbook); 
+            CashBook cb = new CashBook();
+            var cbm = _imapper.Map(cashbook, cb);
+            await _icashBook.PutCashBook(cbm); 
         }
     }
 }

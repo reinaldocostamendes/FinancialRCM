@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "AutoMapper/11.0.1": {
+      "AutoMapper/11.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0"
@@ -2226,7 +2226,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "AutoMapper": "11.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Entities": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.15",
@@ -2244,7 +2243,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "AutoMapper": "11.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "FluentValidation": "10.4.0",
           "FluentValidation.AspNetCore": "10.4.0",
@@ -2258,19 +2256,37 @@
         "runtime": {
           "bin/placeholder/Entities.dll": {}
         }
+      },
+      "Infrastruture/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
+          "Domain": "1.0.0",
+          "Entities": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "5.0.15",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.15",
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.5"
+        },
+        "compile": {
+          "bin/placeholder/Infrastruture.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastruture.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "AutoMapper/11.0.1": {
-      "sha512": "WIadGC1pIwbnyTubvI577p3F++Bsj9q2Q3OaAc1I0QS+JhupN1xkdrPBhI9bPIeg63zM81tZplUNYkqU1HE5jQ==",
+    "AutoMapper/11.0.0": {
+      "sha512": "+596AnKykYCk9RxXCEF4GYuapSebQtFVvIA1oVG1rrRkCLAC7AkWehJ0brCfYUbdDW3v1H/p0W3hob7JoXGjMw==",
       "type": "package",
-      "path": "automapper/11.0.1",
+      "path": "automapper/11.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "automapper.11.0.1.nupkg.sha512",
+        "automapper.11.0.0.nupkg.sha512",
         "automapper.nuspec",
         "icon.png",
         "lib/netstandard2.1/AutoMapper.dll",
@@ -7597,14 +7613,19 @@
       "type": "project",
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "Infrastruture/1.0.0": {
+      "type": "project",
+      "path": "../Infrastruture/Infrastruture.csproj",
+      "msbuildProject": "../Infrastruture/Infrastruture.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "Domain >= 1.0.0",
       "Entities >= 1.0.0",
+      "Infrastruture >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.15",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.15",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.15",
@@ -7613,24 +7634,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rcm_r\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\rcostame\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\rcm_r\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\obj\\",
+      "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\rcostame\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\rcm_r\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\rcostame\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7644,11 +7660,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
+            "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+            "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+            },
+            "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
+              "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj"
             }
           }
         }
@@ -7663,10 +7682,6 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
-          "AutoMapper": {
-            "target": "Package",
-            "version": "[11.0.1, )"
-          },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[11.0.0, )"

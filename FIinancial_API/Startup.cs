@@ -35,26 +35,32 @@ namespace FIinancial_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Financial_API", Version = "v1" });
+            });
 
-            services.AddSingleton<CashBookRepository>();
-            services.AddSingleton<DocumentRepository>();
-            services.AddSingleton<OrderRepository>();
-            services.AddSingleton<OrderProductRepository>();
+            services.AddDbContext<FinancialContext>(cfg =>
+            {
+                cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging();
+            });
+
+            services.AddScoped<CashBookRepository>();
+            services.AddScoped<DocumentRepository>();
+            services.AddScoped<OrderRepository>();
+            services.AddScoped<OrderProductRepository>();
+
+            services.AddScoped<ICashBook,CashBookService>();
+            services.AddScoped<IDocument,DocumentService>(); 
+            services.AddScoped<IOrder,OrderService>();
+            services.AddScoped<IOrderProduct, OrderProductService>();
 
 
-            services.AddSingleton<ICashBook,CashBookService>();
-            services.AddSingleton<IDocument,DocumentService>(); 
-            services.AddSingleton<IOrder,OrderService>();
-            services.AddSingleton<IOrderProduct, OrderProductService>();
-
-
-            services.AddSingleton<ICashBookApplication, CashBookApplication>();
-            services.AddSingleton<IDocumentApplication, DocumentApplication>();
-            services.AddSingleton<IOrderApplication, OrderApplication>();
-            services.AddSingleton<IOrderProductApplication, OrderProductApplication>();
+            services.AddScoped<ICashBookApplication, CashBookApplication>();
+            services.AddScoped<IDocumentApplication, DocumentApplication>();
+            services.AddScoped<IOrderApplication, OrderApplication>();
+            services.AddScoped<IOrderProductApplication, OrderProductApplication>();
 
             services.AddControllers()
                  .AddFluentValidation(s =>
@@ -63,11 +69,7 @@ namespace FIinancial_API
                      s.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                  });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());    
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Financial_API", Version = "v1" });
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

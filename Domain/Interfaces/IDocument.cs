@@ -9,12 +9,12 @@ namespace Domain.Interfaces
 {
    public  interface IDocument
     {
-        Task<bool> AddDocument(Document document);
+        Task AddDocument(Document document);
         Task<List<Document>> GetAllDocuments(); 
         Task<Document> GetById(Guid id);
-        Task<bool> UpdateDocument(Document document);
+        Task UpdateDocument(Document document);
 
-        Task<bool> UpdatePayementDocument(Document document);
+        Task UpdatePayementDocument(Document document);
         Task DeleteDocument(Guid id);   
 
     }

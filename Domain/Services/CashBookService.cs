@@ -11,16 +11,16 @@ namespace Domain.Services
 {
     public class CashBookService : ICashBook
     {
-        public async Task<bool> AddCashBook(CashBook cashbook)
+        public async Task AddCashBook(CashBook cashbook)
         {
             var validator = new CashBookValidator();
             var result = validator.Validate(cashbook);
-            if (!result.IsValid)
+            if (result.IsValid)
             {
-                return false;
+                throw new Exception();
             }
             await AddCashBook(cashbook);
-            return true;
+          
         }
 
         public async Task<List<CashBook>> GetAllCashBook()
@@ -40,16 +40,16 @@ namespace Domain.Services
             return await GetCashBookById(id);
         }
 
-        public async Task<bool> PutCashBook(CashBook cashbook)
+        public async Task PutCashBook(CashBook cashbook)
         {
             var validator = new CashBookValidator();
             var result = validator.Validate(cashbook);
             if (!result.IsValid)
             {
-                return false;
+                throw new  Exception();
             }
             await PutCashBook(cashbook);
-            return true;
+         
         }
 
         public async Task<bool> UpdateCashBook(CashBook cashbook)

@@ -11,14 +11,13 @@ namespace Domain.Services
 {
     public class OrderService : IOrder
     {
-        public async Task<bool> AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
             var validator =new OrderValidator();
             var result = validator.Validate(order);
-            if (!result.IsValid) { return false; }
+            if (!result.IsValid) { throw new Exception(); }
            await  AddOrder(order);
-            return true;    
-           
+            
         }
 
         public async Task DeleteOrder(Guid id)
@@ -41,22 +40,22 @@ namespace Domain.Services
             return await GetOrdersByCode(code);
         }
 
-        public async Task<bool> UpdateOrder(Order order)
+        public async Task UpdateOrder(Order order)
         {
             var validator = new OrderValidator();
             var result = validator.Validate(order);
-            if (!result.IsValid) { return false; }
+            if (!result.IsValid) { throw new Exception(); }
             await UpdateOrder(order);
-            return true;
+           
         }
 
-        public async Task<bool> UpdateOrderStatus(Order order)
+        public async Task UpdateOrderStatus(Order order)
         {
             var validator = new OrderValidator();
             var result = validator.Validate(order);
-            if (!result.IsValid) { return false; }
+            if (!result.IsValid) { throw new Exception(); }
             await UpdateOrder(order);
-            return true;
+           
         }
 
      

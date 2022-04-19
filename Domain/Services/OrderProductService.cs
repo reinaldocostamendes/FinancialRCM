@@ -11,13 +11,13 @@ namespace Domain.Services
 {
     public class OrderProductService : IOrderProduct
     {
-        public async Task<bool> AddOrderProduct(OrderProducts orderProducts)
+        public async Task AddOrderProduct(OrderProducts orderProducts)
         {
             var validator = new OrderProductValidator();
             var result = validator.Validate(orderProducts);
-            if (!result.IsValid) { return false; }
+            if (!result.IsValid) { throw new Exception(); }
             await AddOrderProduct(orderProducts);
-            return true;
+            
         }
     }
 }

@@ -11,16 +11,16 @@ namespace Domain.Services
 {
     public class DocumentService : IDocument
     {
-        public async Task<bool> AddDocument(Document document)
+        public async Task AddDocument(Document document)
         {
             var validator = new DocumentValidator();
             var result = validator.Validate(document);
             if (!result.IsValid)
             {
-                return false;
+               throw new Exception();
             }
             await AddDocument(document);
-            return true;
+          
         }
 
         public async Task DeleteDocument(Guid id)
@@ -38,27 +38,27 @@ namespace Domain.Services
             return await GetById(id);
         }
 
-        public async Task<bool> UpdateDocument(Document document)
+        public async Task UpdateDocument(Document document)
         {
             var validator = new DocumentValidator();
             var result = validator.Validate(document);
             if (!result.IsValid)
             {
-                return false;
+                throw new Exception();
             }
             await UpdateDocument(document);
-            return true;
+           
         }
-        public async Task<bool> UpdatePayementDocument(Document document)
+        public async Task UpdatePayementDocument(Document document)
         {
             var validator = new DocumentValidator();
             var result = validator.Validate(document);
             if (!result.IsValid)
             {
-                return false;
+                throw new Exception();
             }
             await UpdatePayementDocument(document);
-            return true;
+          
 
         }
     }

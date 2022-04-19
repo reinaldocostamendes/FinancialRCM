@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
    public interface IOrderProduct
     {
-        Task<bool> AddOrderProduct(OrderProducts orderProducts);
+        Task AddOrderProduct(OrderProducts orderProducts);
     }
 }

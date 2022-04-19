@@ -1,4 +1,5 @@
-﻿using Entities.Entities;
+﻿using Application.DTOs;
+using Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,14 @@ namespace Application.Interfaces
 {
     public  interface ICashBookApplication
     {
-        Task<bool> AddCashBook(CashBook cashbook);
+        Task AddCashBook(CashBookDTO cashbook);
 
         Task<List<CashBook>> GetAllCashBook();
         Task<CashBook> GetCashBookOriginId(Guid Id);
 
         Task<CashBook> GetCashBookById(Guid id);
 
-        Task<bool> PutCashBook(CashBook cashbook);
+        Task PutCashBook(CashBookDTO cashbook);
 
     }
 }

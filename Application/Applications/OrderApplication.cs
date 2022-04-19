@@ -1,4 +1,6 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
+using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
 using System;
@@ -11,16 +13,20 @@ namespace Application.Applications
 {
     public class OrderApplication : IOrderApplication
     {
-        IOrder _iorder;
+        private readonly IOrder _iorder;
+        private readonly IMapper _imapper;
 
-        public OrderApplication(IOrder iorder)
+        public OrderApplication(IOrder iorder, IMapper imapper)
         {
             _iorder = iorder;
+            _imapper = imapper; 
         }
 
-        public async Task<bool> AddOrder(Order order)
+        public async Task AddOrder(OrderDTO order)
         {
-           return await _iorder.AddOrder(order);  
+            Order o = new Order();
+            var om = _imapper.Map(order, o);
+            await _iorder.AddOrder(om);  
         }
 
         public async Task DeleteOrder(Guid id)
@@ -43,14 +49,18 @@ namespace Application.Applications
            return await _iorder.GetOrdersByCustumer(id);  
         }
 
-        public async Task<bool> UpdateOrder(Order order)
+        public async Task UpdateOrder(OrderDTO order)
         {
-            return await _iorder.UpdateOrder(order);
+            var o = new Order();
+           var om= _imapper.Map(order, o);
+             await _iorder.UpdateOrder(om);
         }
 
-        public async Task<bool> UpdateOrderStatus(Order order)
+        public async Task UpdateOrderStatus(OrderDTO order)
         {
-            return await _iorder.UpdateOrderStatus(order);
+            var o = new Order();
+            var om = _imapper.Map(order, o);
+            await _iorder.UpdateOrder(om);
         }
     }
 }
