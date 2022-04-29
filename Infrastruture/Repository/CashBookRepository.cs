@@ -22,12 +22,12 @@ namespace Infrastruture.Repository
 
         public async Task AddCashBook(CashBook cashbook)
         {
-           await base.Put(cashbook); 
+           await base.Post(cashbook); 
         }
 
-        public async Task<List<CashBook>> GetAllCashBook()
+        public async Task<List<CashBook>> GetAllCashBook(int pageIndex, int pageSize)
         {
-            return await base.GetAll();
+            return await base.GetAll(pageIndex,pageSize);
         }
 
         public async Task<CashBook> GetCashBookById(Guid id)

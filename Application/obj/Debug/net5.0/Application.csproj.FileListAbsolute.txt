@@ -40,3 +40,5 @@ C:\Users\rcostame\Source\Repos\FINANCIAL_CHALLENGE\Application\obj\Debug\net5.0\
 C:\Users\rcostame\Source\Repos\FINANCIAL_CHALLENGE\Application\obj\Debug\net5.0\ref\Application.dll
 C:\Users\rcostame\source\repos\FINANCIAL_CHALLENGE\Application\bin\Debug\net5.0\Infrastruture.dll
 C:\Users\rcostame\source\repos\FINANCIAL_CHALLENGE\Application\bin\Debug\net5.0\Infrastruture.pdb
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Application\bin\Debug\net5.0\Infrastruture.dll
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Application\bin\Debug\net5.0\Infrastruture.pdb

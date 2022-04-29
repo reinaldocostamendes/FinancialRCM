@@ -28,9 +28,9 @@ namespace Domain.Services
             await DeleteDocument(id);
         }
 
-        public async Task<List<Document>> GetAllDocuments()
+        public async Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize)
         {
-            return await GetAllDocuments();
+            return await GetAllDocuments(pageIndex,pageSize);
         }
 
         public async Task<Document> GetById(Guid id)

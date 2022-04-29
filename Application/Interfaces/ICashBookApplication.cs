@@ -12,7 +12,7 @@ namespace Application.Interfaces
     {
         Task AddCashBook(CashBookDTO cashbook);
 
-        Task<List<CashBook>> GetAllCashBook();
+        Task<List<CashBook>> GetAllCashBook(int pageIndex, int pageSize);
         Task<CashBook> GetCashBookOriginId(Guid Id);
 
         Task<CashBook> GetCashBookById(Guid id);

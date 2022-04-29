@@ -10,7 +10,7 @@ namespace Domain.Interfaces
     public  interface IOrder
     {
         Task AddOrder(Order order);
-        Task<List<Order>> GetAllOrders();
+        Task<List<Order>> GetAllOrders(int pageIndex, int pageSize);
 
         Task<Order> GetOrdersByCode(long code);
         Task<Order> GetOrdersByClientId(Guid id);

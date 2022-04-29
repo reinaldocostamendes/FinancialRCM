@@ -27,9 +27,9 @@ namespace Infrastruture.Repository
             await base.Delete(document);
         }
 
-        public async Task<List<Document>> GetAllDocuments()
+        public async Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize)
         {
-           return await base.GetAll();  
+           return await base.GetAll(pageIndex,pageSize);  
         }
 
         public async Task UpdateDocument(Document document)

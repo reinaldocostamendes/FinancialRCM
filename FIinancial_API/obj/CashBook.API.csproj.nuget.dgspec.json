@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj": {}
+    "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj": {
+    "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\rcostame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\obj\\",
+        "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\rcm_r\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\rcostame\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rcm_r\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,14 +32,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
               },
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj"
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj"
               }
             }
           }
@@ -50,9 +54,25 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.33, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -77,6 +97,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.15, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
@@ -94,21 +118,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
+    "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\rcostame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\rcm_r\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\rcostame\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rcm_r\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -122,8 +150,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
               }
             }
           }
@@ -138,9 +166,25 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.33, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -165,6 +209,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.15, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
@@ -182,21 +230,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
+    "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\rcostame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\rcm_r\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\rcostame\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rcm_r\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -222,6 +274,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
@@ -233,6 +289,10 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[10.4.0, )"
+            },
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.33, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -251,95 +311,6 @@
             "Microsoft.EntityFrameworkCore.SqlServer.Design": {
               "target": "Package",
               "version": "[1.1.5, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.15, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj",
-        "projectName": "CashBook.API",
-        "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj",
-        "packagesPath": "C:\\Users\\rcostame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\rcostame\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj"
-              },
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
-              },
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
-              },
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[11.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.15, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.15, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -363,28 +334,29 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
+    "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj",
-        "projectName": "Infrastruture",
-        "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj",
-        "packagesPath": "C:\\Users\\rcostame\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\obj\\",
+        "projectUniqueName": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj",
+        "projectName": "CashBook.API",
+        "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\CashBook.API.csproj",
+        "packagesPath": "C:\\Users\\rcm_r\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\FIinancial_API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\rcostame\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rcm_r\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -398,11 +370,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Application\\Application.csproj"
               },
-              "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\rcostame\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+              },
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj"
               }
             }
           }
@@ -417,9 +395,25 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.33, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -444,6 +438,134 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.15, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.16, 5.0.16]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj",
+        "projectName": "Infrastruture",
+        "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\Infrastruture.csproj",
+        "packagesPath": "C:\\Users\\rcm_r\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Infrastruture\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rcm_r\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Entities\\Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.4.0, )"
+            },
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.33, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
@@ -461,7 +583,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -22,18 +22,22 @@ namespace Infrastruture.Repository
 
         public async Task AddOrder(Order order)
         {
-            await base.Put(order);    
+           
+            await base.Post(order);    
         }
-
+       public async Task<Order> GetByIdOrder(Guid id)
+        {
+            return await base.GetById(id);  
+        }
         public async Task DeleteOrder(Guid id)
         {
             var order = await base.GetById(id);
            await base.Delete(order);
         }
 
-        public async Task<List<Order>> GetAllOrders()
+        public async Task<List<Order>> GetAllOrders(int pageIndex, int pageSize)
         {
-            return await base.GetAll(); 
+            return await base.GetAll(pageIndex,pageSize); 
         }
 
         public async Task<Order> GetOrdersByCode(long code)

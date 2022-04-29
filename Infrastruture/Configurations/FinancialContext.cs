@@ -14,7 +14,11 @@ namespace Infrastruture.Configurations
         public DbSet<Document> Document { get; set; }
         public DbSet<OrderProducts> OrderProducts { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderProducts>().HasOne<Order>(o => o.Order).WithMany(p=>p.OrderProducts)
+                .HasForeignKey(e=>e.OrderId).IsRequired(true).OnDelete(DeleteBehavior.Cascade);
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -25,7 +29,7 @@ namespace Infrastruture.Configurations
         }
         public string ObterStringConexao()
         {
-            string strcon = "Server = L-PT-5CG1118B3S\\SQLEXPRESS; Database = FinancialChallengeDb; Integrated Security = True";
+            string strcon = "Server=Reinaldo\\SQLEXPRESS; Database = FinancialChallengeDb; Integrated Security = True";
             return strcon;
         }
     }

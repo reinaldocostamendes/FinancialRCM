@@ -23,9 +23,9 @@ namespace Domain.Services
           
         }
 
-        public async Task<List<CashBook>> GetAllCashBook()
+        public async Task<List<CashBook>> GetAllCashBook(int pageIndex, int pageSize)
         {
-            return await GetAllCashBook();
+            return await GetAllCashBook(pageIndex,pageSize);
         }
 
         public async Task<CashBook> GetCashBookByOriginId(Guid id)

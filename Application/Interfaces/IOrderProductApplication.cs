@@ -10,6 +10,7 @@ namespace Application.Interfaces
 {
    public interface IOrderProductApplication
     {
-        Task AddOrderProduct(OrderProductDTO orderProducts);
+        Task AddOrderProduct(OrderProducts orderProducts);
+        Task<List<OrderProducts>> GetAllOrderProductsByOrderId(Guid orderId);
     }
 }

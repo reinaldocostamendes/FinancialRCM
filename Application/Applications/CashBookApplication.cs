@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
+using Entities.Validadors;
 using Infrastruture.Repository;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,25 @@ namespace Application.Applications
 
         public async Task AddCashBook(CashBookDTO cashbook)
         {
+            var validator = new CashBookValidator();
             CashBook cb = new CashBook();
             var cbm = _imapper.Map(cashbook, cb);
-             await _icashBook.AddCashBook(cbm);
+            var result = validator.Validate(cbm);
+            if (!result.IsValid)
+            {
+                var message = "";
+                foreach (var item in result.Errors)
+                {
+                    message+=item.ToString()+"\n";   
+                }   
+                throw new Exception(message);
+            }
+            await _icashBook.AddCashBook(cbm);
         }
 
-        public async Task<List<CashBook>> GetAllCashBook()
+        public async Task<List<CashBook>> GetAllCashBook(int pageIndex, int pageSize)
         {
-            return await _icashBook.GetAllCashBook();
+            return await _icashBook.GetAllCashBook(pageIndex,pageSize);
         }
 
         public async Task<CashBook> GetCashBookOriginId(Guid Id)
@@ -47,8 +59,19 @@ namespace Application.Applications
 
         public async Task PutCashBook(CashBookDTO cashbook)
         {
+            var validator = new CashBookValidator();
             CashBook cb = new CashBook();
             var cbm = _imapper.Map(cashbook, cb);
+            var result = validator.Validate(cbm);
+            if (!result.IsValid)
+            {
+                var message = "";
+                foreach (var item in result.Errors)
+                {
+                    message += item.ToString() + "\n";
+                }
+                throw new Exception(message);
+            }
             await _icashBook.PutCashBook(cbm); 
         }
     }

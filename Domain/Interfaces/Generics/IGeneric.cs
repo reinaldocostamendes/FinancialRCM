@@ -11,7 +11,7 @@ Task Post(T entity);
 Task Put(T entity);
 
 Task Delete(T entity);
-Task<List<T>> GetAll(); 
+Task<List<T>> GetAll(int pageIndex, int pageSize); 
 Task<T> GetById(Guid id);
 
     }

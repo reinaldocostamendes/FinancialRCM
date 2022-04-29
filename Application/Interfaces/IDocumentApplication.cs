@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.ViewModel;
 using Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace Application.Interfaces
    public  interface IDocumentApplication
     {
         Task AddDocument(DocumentDTO document);
-        Task<List<Document>> GetAllDocuments(); 
+        Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize); 
         Task<Document> GetById(Guid id);
-        Task UpdateDocument(DocumentDTO document);
+        Task UpdateDocument(Document document);
 
-        Task UpdatePayementDocument(DocumentDTO document);
+        Task UpdatePayementDocument(UpdatePaymentViewModel pvm);
         Task DeleteDocument(Guid id);   
 
     }

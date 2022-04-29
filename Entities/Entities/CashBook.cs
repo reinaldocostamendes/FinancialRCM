@@ -1,6 +1,7 @@
 ﻿using Entities.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Entities.Entities
 
         public string Description { get; set; }
         public CashBookType Type { get; set; }  
+        [Column("Value")]
         public decimal Value { get; set; }
     }
 }

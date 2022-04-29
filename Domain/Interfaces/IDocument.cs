@@ -10,7 +10,7 @@ namespace Domain.Interfaces
    public  interface IDocument
     {
         Task AddDocument(Document document);
-        Task<List<Document>> GetAllDocuments(); 
+        Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize); 
         Task<Document> GetById(Guid id);
         Task UpdateDocument(Document document);
 

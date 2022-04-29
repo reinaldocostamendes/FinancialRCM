@@ -11,7 +11,7 @@ namespace Domain.Interfaces
     {
         Task AddCashBook(CashBook cashbook);
 
-        Task<List<CashBook>> GetAllCashBook();
+        Task<List<CashBook>> GetAllCashBook(int pageIndex, int pageSize);
         Task<CashBook> GetCashBookByOriginId(Guid Id);
         Task<CashBook> GetCashBookById(Guid id);
 

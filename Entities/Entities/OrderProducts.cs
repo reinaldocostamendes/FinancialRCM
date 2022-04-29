@@ -16,8 +16,12 @@ namespace Entities.Entities
         public Guid ProductId { get; set; }
         public string ProductDescription { get; set; }  
         public ProductCategory ProductCategory { get; set; }
+        [Column("Quantity")]
         public decimal Quantity { get; set; }
+        [Column("Value")]
         public decimal Value { get; set; }
+        [Column("Total")]
         public decimal Total { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

@@ -1,0 +1,15 @@
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\bin\Debug\net5.0\Project_Helper.deps.json
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\bin\Debug\net5.0\Project_Helper.dll
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\bin\Debug\net5.0\Project_Helper.pdb
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\bin\Debug\net5.0\Entities.dll
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\bin\Debug\net5.0\Entities.pdb
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.csproj.AssemblyReference.cache
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.AssemblyInfoInputs.cache
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.AssemblyInfo.cs
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.csproj.CoreCompileInputs.cache
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.csproj.CopyComplete
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.dll
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\refint\Project_Helper.dll
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\Project_Helper.pdb
+C:\Users\rcm_r\source\repos\FINANCIAL_CHALLENGE\Project_Helper\obj\Debug\net5.0\ref\Project_Helper.dll

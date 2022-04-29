@@ -38,7 +38,8 @@ namespace Infrastruture.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("Value");
 
                     b.HasKey("Id");
 
@@ -111,7 +112,8 @@ namespace Infrastruture.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("CostValue")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("CostValue");
 
                     b.Property<DateTimeOffset>("Date")
                         .HasColumnType("datetimeoffset");
@@ -141,7 +143,8 @@ namespace Infrastruture.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalValue")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("TotalValue");
 
                     b.HasKey("Id");
 
@@ -167,13 +170,16 @@ namespace Infrastruture.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("Quantity");
 
                     b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("Total");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("Value");
 
                     b.HasKey("Id");
 
@@ -184,11 +190,13 @@ namespace Infrastruture.Migrations
 
             modelBuilder.Entity("Entities.Entities.OrderProducts", b =>
                 {
-                    b.HasOne("Entities.Entities.Order", null)
+                    b.HasOne("Entities.Entities.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Entities.Entities.Order", b =>

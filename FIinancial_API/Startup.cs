@@ -36,16 +36,28 @@ namespace FIinancial_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyAlloSpecificOrigins", builder =>
+                {
+                    builder.WithOrigins("*").AllowAnyHeader();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Financial_API", Version = "v1" });
             });
 
+            /*services.AddDbContext<FinancialContext>(cfg =>
+            {
+                cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging();
+            });*/
+            services.AddDbContext<FinancialContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<FinancialContext>(cfg =>
             {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging();
             });
-
             services.AddScoped<CashBookRepository>();
             services.AddScoped<DocumentRepository>();
             services.AddScoped<OrderRepository>();

@@ -24,17 +24,19 @@ namespace Infrastruture.Repository.Generics
             using (var data = new FinancialContext(_optionsBuilder))
             {
                data.Set<T>().Remove(entity);
+               
                 await data.SaveChangesAsync();
             }
         }
 
       
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAll(int pageIndex,int pageSize)
         {
             using (var data = new FinancialContext(_optionsBuilder))
             {
-                return await data.Set<T>().AsNoTracking().ToListAsync();
+                var items = await data.Set<T>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                return items;
             }
         }
 

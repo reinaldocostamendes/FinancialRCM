@@ -25,15 +25,17 @@ namespace Domain.Services
             await DeleteOrder(id);
         }
 
-        public async Task<List<Order>> GetAllOrders()
+        public async Task<List<Order>> GetAllOrders(int pageIndex, int pageSize)
         {
-            return await GetAllOrders();
+            return await GetAllOrders(pageIndex, pageSize);
         }
 
-        public async Task<Order> GetOrdersByCustumer(Guid id)
+        public async Task<Order> GetOrdersByClientId(Guid id)
         {
-           return await GetOrdersByCustumer(id);
+           return await GetOrdersByClientId(id);
         }
+
+       
 
         public async Task<Order> GetOrdersByCode(long code)
         {

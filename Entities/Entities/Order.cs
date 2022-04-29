@@ -1,6 +1,7 @@
 ﻿using Entities.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,12 @@ namespace Entities.Entities
         public string State { get; set; }
         public decimal ProductsValues { get; set; }
         public decimal Discount { get; set; }
+        [Column("CostValue")]
         public decimal CostValue { get; set; }
+        [Column("TotalValue")]
         public decimal TotalValue { get; set; }
 
-        public List<OrderProducts> OrderProducts { get; set; }  
+        public virtual ICollection<OrderProducts> OrderProducts { get; set; }  
+
     }
 }
