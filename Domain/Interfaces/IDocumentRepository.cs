@@ -1,4 +1,6 @@
-﻿using Entities.Entities;
+﻿using Domain.Interfaces.Generics;
+using Entities.Entities;
+using Entities.PageParam;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +9,18 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-   public  interface IDocument
+    public interface IDocumentRepository : IGeneric<Document>
     {
         Task AddDocument(Document document);
-        Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize); 
+
+        Task<List<Document>> GetAllDocuments(PageParameters pageParameters);
+
         Task<Document> GetById(Guid id);
+
         Task UpdateDocument(Document document);
 
         Task UpdatePayementDocument(Document document);
-        Task DeleteDocument(Guid id);   
 
+        Task DeleteDocument(Guid id);
     }
 }

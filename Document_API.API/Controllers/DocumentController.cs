@@ -1,8 +1,11 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.ViewModel;
+using AutoMapper;
+using Document_API.API.Contacts;
 using Domain.Interfaces;
 using Entities.Entities;
+using Entities.PageParam;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,10 +19,12 @@ namespace Document_API.API.Controllers
     public class DocumentController : ControllerBase
     {
         private readonly IDocumentApplication _idocumentApplication;
+        private readonly IMapper _imapper;
 
-        public DocumentController(IDocumentApplication idocumentApplication)
+        public DocumentController(IDocumentApplication idocumentApplication, IMapper imapper)
         {
             _idocumentApplication = idocumentApplication;
+            _imapper = imapper; 
         }
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] DocumentDTO document)
@@ -29,15 +34,17 @@ namespace Document_API.API.Controllers
                 await _idocumentApplication.AddDocument(document);
             }catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                
+               
+                return BadRequest(new DocumentErrorMessage("600", ex.Message, document));
             }
             return Ok("Added Successfull!");
         }
 
         [HttpGet]
-        public async Task<List<Document>> GetAll(int pageIndex,int pageSize)
+        public async Task<List<Document>> GetAll([FromQuery] PageParameters pageParameters)
         {
-            return await _idocumentApplication.GetAllDocuments(pageIndex,pageSize);
+            return await _idocumentApplication.GetAllDocuments(pageParameters);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Document>> GetById(Guid id)
@@ -58,7 +65,8 @@ namespace Document_API.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+               
+                return BadRequest(new DocumentErrorMessage("600", ex.Message, _imapper.Map(document,new DocumentDTO())));
             }
             return Ok("Added Successfull!");
         }

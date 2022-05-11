@@ -2,6 +2,7 @@
 using Application.ViewModel;
 using Entities.Entities;
 using Entities.Enums;
+using Entities.PageParam;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Application.Interfaces
     public  interface IOrderApplication
     {
         Task AddOrder(OrderDTO order);
-        Task<List<Order>> GetAllOrders(int pageIndex, int pageSize);
+        Task<List<Order>> GetAllOrders(PageParameters pageParameters);
 
         Task<Order> GetOrdersByCode(long code);
         Task<Order> GetOrdersByClient(Guid id);

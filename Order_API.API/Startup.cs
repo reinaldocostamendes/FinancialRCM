@@ -2,6 +2,7 @@ using Application.Applications;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Services;
+using Domain.Services.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastruture.Configurations;
 using Infrastruture.Repository;
@@ -34,7 +35,6 @@ namespace Order_API.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -55,21 +55,14 @@ namespace Order_API.API
             services.AddDbContext<FinancialContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<CashBookRepository>();
-            services.AddScoped<DocumentRepository>();
-            services.AddScoped<OrderRepository>();
-            services.AddScoped<OrderProductRepository>();
-
-            services.AddScoped<ICashBook, CashBookService>();
-            services.AddScoped<IDocument, DocumentService>();
-            services.AddScoped<IOrder, OrderService>();
-            services.AddScoped<IOrderProduct, OrderProductService>();
-
-
-            services.AddScoped<ICashBookApplication, CashBookApplication>();
-            services.AddScoped<IDocumentApplication, DocumentApplication>();
             services.AddScoped<IOrderApplication, OrderApplication>();
             services.AddScoped<IOrderProductApplication, OrderProductApplication>();
+
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderProductService, OrderProductService>();
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderProductRepository, OrderProductRepository>();
 
             services.AddControllers()
                  .AddFluentValidation(s =>
@@ -78,7 +71,6 @@ namespace Order_API.API
                      s.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                  });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

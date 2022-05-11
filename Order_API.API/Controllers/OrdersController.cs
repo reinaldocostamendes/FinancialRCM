@@ -4,8 +4,10 @@ using Application.ViewModel;
 using AutoMapper;
 using Entities.Entities;
 using Entities.Enums;
+using Entities.PageParam;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Order_API.API.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -20,6 +22,7 @@ namespace Order_API.API.Controllers
         private readonly IOrderApplication _iorderApplication;
         private readonly IOrderProductApplication _iorderProductApplication;
         private readonly IMapper _imapper;
+
 
 
         public OrdersController(IOrderApplication iorderApplication, IOrderProductApplication iorderProductApplication, IMapper imapper)
@@ -37,15 +40,15 @@ namespace Order_API.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message+": Error");
+                return BadRequest(new OrderErrorMessage("600", ex.Message, order));
             }
             return Ok("Added Successfull!");
         }
         [HttpGet]
-        public async Task<List<OrderViewModel>> GetAll(int pageIndex,int pageSize)
+        public async Task<List<OrderViewModel>> GetAll([FromQuery]  PageParameters pageParameters)
         {
             List<OrderViewModel> ovms = new List<OrderViewModel>(); 
-            var orders = await _iorderApplication.GetAllOrders(pageIndex,pageSize);
+            var orders = await _iorderApplication.GetAllOrders(pageParameters);
             foreach (var order in orders)
             {
               var ops = await _iorderProductApplication.GetAllOrderProductsByOrderId(order.Id);
@@ -60,6 +63,10 @@ namespace Order_API.API.Controllers
         public async Task<ActionResult<OrderViewModel>> GetByClient(Guid id)
         {
             var o = await _iorderApplication.GetOrdersByClient(id);
+            if(o == null)
+            {
+                return NoContent();
+            }
             var ops = await _iorderProductApplication.GetAllOrderProductsByOrderId(o.Id);
             OrderViewModel ov = new OrderViewModel();
             var ovm = _imapper.Map(o, ov);
@@ -74,20 +81,13 @@ namespace Order_API.API.Controllers
         public async Task<IActionResult> Put(OrderViewModel order)
         {
             try
-            {
-                if (order.Status == OrderStatus.FINISHED)
-                {
-                    return Ok("Not Possible to change Fnished Order!");
-                }
-                else
-                {
-                    await _iorderApplication.UpdateOrder(order);
-                }
-               
+            {             
+                    await _iorderApplication.UpdateOrder(order);            
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+              //  return BadRequest(new OrderErrorMessage("600", ex.Message,_imapper.Map(order,new OrderDTO())));
+                return BadRequest(new OrderErrorMessage("600", ex.Message,null));
             }
             return Ok();
 
@@ -102,7 +102,7 @@ namespace Order_API.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new OrderErrorMessage("600", ex.Message, null));
             }
             return Ok("Status Changed successfull!");
         }

@@ -2,6 +2,7 @@ using Application.Applications;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Services;
+using Domain.Services.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastruture.Configurations;
 using Infrastruture.Repository;
@@ -19,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 
 namespace FIinancial_API
 {
@@ -58,21 +58,20 @@ namespace FIinancial_API
             {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging();
             });
-            services.AddScoped<CashBookRepository>();
-            services.AddScoped<DocumentRepository>();
-            services.AddScoped<OrderRepository>();
-            services.AddScoped<OrderProductRepository>();
+            // services.AddScoped<DocumentRepository>();
+            //  services.AddScoped<OrderRepository>();
+            // services.AddScoped<OrderProductRepository>();
 
-            services.AddScoped<ICashBook,CashBookService>();
-            services.AddScoped<IDocument,DocumentService>(); 
-            services.AddScoped<IOrder,OrderService>();
-            services.AddScoped<IOrderProduct, OrderProductService>();
-
+            services.AddScoped<ICashBookService, CashBookService>();
+            services.AddScoped<ICashBookRepository, CashBookRepository>();
+            /* services.AddScoped<IDocumentRepository, DocumentRepository>();
+             services.AddScoped<IOrderRepository, OrderRepository>();
+             services.AddScoped<IOrderProductRepository, OrderProductRepository>();*/
 
             services.AddScoped<ICashBookApplication, CashBookApplication>();
-            services.AddScoped<IDocumentApplication, DocumentApplication>();
-            services.AddScoped<IOrderApplication, OrderApplication>();
-            services.AddScoped<IOrderProductApplication, OrderProductApplication>();
+            /* services.AddScoped<IDocumentApplication, DocumentApplication>();
+             services.AddScoped<IOrderApplication, OrderApplication>();
+             services.AddScoped<IOrderProductApplication, OrderProductApplication>();*/
 
             services.AddControllers()
                  .AddFluentValidation(s =>
@@ -80,8 +79,7 @@ namespace FIinancial_API
                      s.RegisterValidatorsFromAssemblyContaining<Startup>();
                      s.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                  });
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());    
-            
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

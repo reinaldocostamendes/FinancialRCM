@@ -1,5 +1,7 @@
-﻿using Domain.Interfaces;
+﻿
+using Domain.Interfaces;
 using Entities.Entities;
+using Entities.PageParam;
 using Infrastruture.Configurations;
 using Infrastruture.Repository.Generics;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Infrastruture.Repository
 {
-    public class DocumentRepository : GenericRepository<Document>, IDocument
+    public class DocumentRepository : GenericRepository<Document>, IDocumentRepository
 
     {
         private readonly DbContextOptions<FinancialContext> dbContextOptions;
@@ -27,9 +29,9 @@ namespace Infrastruture.Repository
             await base.Delete(document);
         }
 
-        public async Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize)
+        public async Task<List<Document>> GetAllDocuments(PageParameters pageParameters)
         {
-           return await base.GetAll(pageIndex,pageSize);  
+           return await base.GetAll(pageParameters);  
         }
 
         public async Task UpdateDocument(Document document)

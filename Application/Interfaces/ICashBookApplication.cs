@@ -1,5 +1,7 @@
 ﻿using Application.DTOs;
+using Application.ViewModel;
 using Entities.Entities;
+using Entities.PageParam;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace Application.Interfaces
     {
         Task AddCashBook(CashBookDTO cashbook);
 
-        Task<List<CashBook>> GetAllCashBook(int pageIndex, int pageSize);
+        Task<List<CashBook>> GetAllCashBook(PageParameters pageParameters);
         Task<CashBook> GetCashBookOriginId(Guid Id);
 
         Task<CashBook> GetCashBookById(Guid id);

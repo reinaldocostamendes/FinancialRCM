@@ -3,8 +3,10 @@ using Application.Interfaces;
 using Application.ViewModel;
 using AutoMapper;
 using Domain.Interfaces;
+using Domain.Services.Interfaces;
 using Entities.Entities;
 using Entities.Enums;
+using Entities.PageParam;
 using Entities.Validadors;
 using Infrastruture.Repository;
 using System;
@@ -20,28 +22,27 @@ namespace Application.Applications
 {
     public class OrderApplication : IOrderApplication
     {
-        private readonly OrderRepository _iorder;
-        private readonly OrderProductRepository _iorderProduct;
+        private readonly IOrderService _iorder;
+        private readonly IOrderProductService _iorderProduct;
         private readonly IMapper _imapper;
 
-        public OrderApplication(OrderRepository iorder, OrderProductRepository iorderProduc, IMapper imapper)
+        public OrderApplication(IOrderService iorder, IOrderProductService iorderProduc, IMapper imapper)
         {
             _iorder = iorder;
-            _imapper = imapper; 
-            _iorderProduct=iorderProduc;    
+            _imapper = imapper;
+            _iorderProduct = iorderProduc;
         }
 
         public async Task AddOrder(OrderDTO order)
         {
-            Order o = new Order();
-            var om = _imapper.Map(order, o);
+            var om = _imapper.Map(order, new Order());
             var totalAmount = order.OrderProducts.Sum(p => p.Value * p.Quantity);
             om.ProductsValues = totalAmount;
-            om.TotalValue= totalAmount - order.Discount;
+            om.TotalValue = totalAmount - order.Discount;
             om.Status = Entities.Enums.OrderStatus.RECEIVED;
-           var g = Guid.NewGuid();
-            om.Id = g;  
-            var custumizedList = custumizedListOrderProduct(order.OrderProducts.ToList(),g);
+            var g = Guid.NewGuid();
+            om.Id = g;
+            var custumizedList = custumizedListOrderProduct(order.OrderProducts.ToList(), g);
             var validator = new OrderValidator();
             var result = validator.Validate(om);
             if (!result.IsValid)
@@ -74,42 +75,45 @@ namespace Application.Applications
                 await _iorderProduct.AddOrderProduct(custumized);
             }
         }
-       private bool ContainDiferentsCategory(List<OrderProducts> products)
+
+        private bool ContainDiferentsCategory(List<OrderProducts> products)
         {
-            if(products == null || products.Count > 1)
+            if (products == null || products.Count > 1)
             {
                 var product = products[0];
                 for (int i = 1; i < products.Count; i++)
                 {
                     var p = products[i];
-                    if((p!=null  && product !=null)&&(p.ProductCategory != product.ProductCategory)) { return true; } else
+                    if ((p != null && product != null) && (p.ProductCategory != product.ProductCategory)) { return true; }
+                    else
                     {
-                        product = products[i];  
+                        product = products[i];
                     }
                 }
-            } 
-            
+            }
+
             return false;
         }
-        private List<OrderProducts> custumizedListOrderProduct(List<OrderProductDTO> oderproducts,Guid id)
+
+        private List<OrderProducts> custumizedListOrderProduct(List<OrderProductDTO> oderproducts, Guid id)
         {
             List<OrderProducts> products = new List<OrderProducts>();
             foreach (var oderproduct in oderproducts)
             {
-                OrderProducts op = new OrderProducts(); 
-                op.ProductDescription = oderproduct.ProductDescription; 
-                op.Quantity = oderproduct.Quantity; 
+                OrderProducts op = new OrderProducts();
+                op.ProductDescription = oderproduct.ProductDescription;
+                op.Quantity = oderproduct.Quantity;
                 op.OrderId = id;
                 op.Id = Guid.NewGuid();
-                op.ProductId = Guid.NewGuid();  
+                op.ProductId = Guid.NewGuid();
                 op.Value = oderproduct.Value;
                 op.Total = op.Quantity * op.Value;
                 op.ProductCategory = (Entities.Enums.ProductCategory)oderproduct.ProductCategory;
                 products.Add(op);
-                
             }
             return products;
         }
+
         private bool ContainEqualProduts(List<OrderProducts> products)
         {
             if (products == null || products.Count > 1)
@@ -118,7 +122,7 @@ namespace Application.Applications
                 for (int i = 1; i < products.Count; i++)
                 {
                     var p = products[i];
-                    if ((p != null && product != null) && (p.ProductCategory == product.ProductCategory &&p.ProductDescription==product.ProductDescription
+                    if ((p != null && product != null) && (p.ProductCategory == product.ProductCategory && p.ProductDescription == product.ProductDescription
                         )) { return true; }
                     else
                     {
@@ -129,80 +133,94 @@ namespace Application.Applications
 
             return false;
         }
+
         public async Task DeleteOrder(Guid id)
         {
-           // await _iorder.DeleteOrder(id);
+            // await _iorder.DeleteOrder(id);
             var om = await _iorder.GetByIdOrder(id);
-           
+
             if (om == null) { throw new Exception("Order not exist"); }
             if (om.Status == Entities.Enums.OrderStatus.FINISHED)
             {
+                string apiUrl = "https://localhost:5001/api/CashBooks";
 
-          
-            string apiUrl = "https://localhost:44323/api/CashBooks";
+                var client = new HttpClient();
 
-            var client = new HttpClient();
-            
-            var odto = new CashBookDTO();
-            odto.Origin = 1;
-            odto.OriginId = om.Id;
-            odto.Description = "Purshase order Nº " + om.Code;
-            odto.Value = om.TotalValue;
-            odto.Type = 3;
-            // var jsonObject = Newtonsoft.Json.JsonConvert.SerializeObject(odto);
+                var odto = new CashBookDTO();
+                odto.Origin = 1;
+                odto.OriginId = om.Id;
+                odto.Description = "Purshase order Nº " + om.Code;
+                odto.Value = om.TotalValue;
+                odto.Type = 3;
+                // var jsonObject = Newtonsoft.Json.JsonConvert.SerializeObject(odto);
 
-            var response = await client.PostAsJsonAsync(apiUrl, odto);
-            if (response != null && !response.IsSuccessStatusCode)
-            {
-                // var result = JsonSerializer.Deserialize<string>(response.Content.)
-                throw new Exception("Error to put cashbook! " + response.ToString());
+                var response = await client.PostAsJsonAsync(apiUrl, odto);
+                if (response != null && !response.IsSuccessStatusCode)
+                {
+                    // var result = JsonSerializer.Deserialize<string>(response.Content.)
+                    throw new Exception("Error to put cashbook! " + response.ToString());
+                }
+                else
+                {
+                    om.Status = Entities.Enums.OrderStatus.FINISHED;
+                    await _iorder.DeleteOrder(id);
+                }
             }
             else
             {
-                om.Status = Entities.Enums.OrderStatus.FINISHED;
                 await _iorder.DeleteOrder(id);
             }
-            }
-            else
-            {
-                await _iorder.DeleteOrder(id);
-            }
-
         }
 
-        public async Task<List<Order>> GetAllOrders(int pageIndex, int pageSize)
+        public async Task<List<Order>> GetAllOrders(PageParameters pageParameters)
         {
-            return await _iorder.GetAllOrders(pageIndex, pageSize);
+            return await _iorder.GetAllOrders(pageParameters);
         }
 
         public async Task<Order> GetOrdersByCode(long code)
         {
-            return await _iorder.GetOrdersByCode(code);   
+            return await _iorder.GetOrdersByCode(code);
         }
 
         public async Task<Order> GetOrdersByClient(Guid id)
         {
-           return await _iorder.GetOrdersByClientId(id);  
+            return await _iorder.GetOrdersByClientId(id);
         }
 
         public async Task UpdateOrder(OrderViewModel order)
         {
             var o = await _iorder.GetByIdOrder(order.Id);
-
+            if (o == null)
+            {
+                throw new Exception("This Order not exists!");
+            }
+            if (o.Status == Entities.Enums.OrderStatus.FINISHED)
+            {
+                throw new Exception("This Order is concluded!");
+            }
             var validator = new OrderValidator();
             var result = validator.Validate(o);
-            var om=new Order();
-            var orderToUpdate = _imapper.Map(order,om);
+            var om = new Order();
+            var orderToUpdate = _imapper.Map(order, om);
             var totalAmount = order.OrderProducts.Sum(p => p.Value * p.Quantity);
-            orderToUpdate.TotalValue = totalAmount; 
+            orderToUpdate.TotalValue = totalAmount;
 
-              foreach (var custumized in order.OrderProducts)
-              {
-                  var orderProductValidator = new OrderProductValidator();
-                  var resultorderProduct = orderProductValidator.Validate(custumized);
-                  if (!resultorderProduct.IsValid) { throw new Exception(); }
-                  await _iorderProduct.AddOrderProduct(custumized);
-              }
+            foreach (var custumized in order.OrderProducts)
+            {
+                var orderProductValidator = new OrderProductValidator();
+                var resultorderProduct = orderProductValidator.Validate(custumized);
+                if (!resultorderProduct.IsValid) { throw new Exception(); }
+                if (_iorderProduct.GetAllOrderProductsByOrderId(o.Id).Result.Contains(custumized))
+                {
+                    custumized.Total = custumized.Value * custumized.Quantity;
+                    await _iorderProduct.AddOrderProduct(custumized);
+                }
+                else
+                {
+                    custumized.Total = custumized.Value * custumized.Quantity;
+                    await _iorderProduct.UpdateOrderProduct(custumized);
+                }
+            }
 
             if (!result.IsValid)
             {
@@ -213,19 +231,19 @@ namespace Application.Applications
                 }
                 throw new Exception(message);
             }
-            string apiUrl = "https://localhost:44323/api/CashBooks";
+            string apiUrl = "https://localhost:5001/api/CashBooks";
 
             var client = new HttpClient();
 
             var odto = new CashBookDTO()
             {
-             Origin = 1,
-            OriginId = order.Id,
-            Description = "Updated Purshase order Nº " + order.Code,
-            Value = orderToUpdate.TotalValue - o.TotalValue,
-            Type = ((orderToUpdate.TotalValue - o.TotalValue)>0)?2:1
-        };
-          
+                Origin = 1,
+                OriginId = order.Id,
+                Description = "Updated Purshase order Nº " + order.Code,
+                Value = orderToUpdate.TotalValue - o.TotalValue,
+                Type = ((orderToUpdate.TotalValue - o.TotalValue) > 0) ? 2 : 1
+            };
+
             // var jsonObject = Newtonsoft.Json.JsonConvert.SerializeObject(odto);
 
             var response = await client.PostAsJsonAsync(apiUrl, odto);
@@ -238,8 +256,6 @@ namespace Application.Applications
             {
                 await _iorder.UpdateOrder(orderToUpdate);
             }
-
-           
         }
 
         public async Task UpdateOrderStatus(Guid id, OrderStatus orderStatus)
@@ -257,7 +273,7 @@ namespace Application.Applications
                 throw new Exception(message);
             }
             var products = _iorderProduct.GetAllOrderProductsByOrderId(id);
-         
+
             var p = products.Result.Where(p => p.ProductCategory == Entities.Enums.ProductCategory.FISICAL);
             if (p.Count() > 0 && om.Status == Entities.Enums.OrderStatus.WAITING_DOWNLOAD)
             {
@@ -290,11 +306,9 @@ namespace Application.Applications
             }
             if (orderStatus == Entities.Enums.OrderStatus.FINISHED)
             {
-              
-              
-                    string apiUrl = "https://localhost:44323/api/CashBooks";
+                string apiUrl = "https://localhost:5001/api/CashBooks";
 
-                    var client = new HttpClient();
+                var client = new HttpClient();
 
                 var odto = new CashBookDTO()
                 {
@@ -304,26 +318,21 @@ namespace Application.Applications
                     Value = -om.TotalValue,
                     Type = 1
                 };
-                   
-                   // var jsonObject = Newtonsoft.Json.JsonConvert.SerializeObject(odto);
 
-                    var response = await client.PostAsJsonAsync(apiUrl, odto);
-                if(response != null && !response.IsSuccessStatusCode)
+                // var jsonObject = Newtonsoft.Json.JsonConvert.SerializeObject(odto);
+
+                var response = await client.PostAsJsonAsync(apiUrl, odto);
+                if (response != null && !response.IsSuccessStatusCode)
                 {
-                   // var result = JsonSerializer.Deserialize<string>(response.Content.)
-                    throw new Exception("Error to put cashbook! "+response.ToString());
+                    // var result = JsonSerializer.Deserialize<string>(response.Content.)
+                    throw new Exception("Error to put cashbook! " + response.ToString());
                 }
                 else
                 {
                     om.Status = Entities.Enums.OrderStatus.FINISHED;
                     await _iorder.UpdateOrder(om);
                 }
-                              
-                
             }
-          
-
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿using Domain.Interfaces.Generics;
+﻿
+using Domain.Interfaces.Generics;
+using Entities.PageParam;
 using Infrastruture.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.SafeHandles;
@@ -31,11 +33,11 @@ namespace Infrastruture.Repository.Generics
 
       
 
-        public async Task<List<T>> GetAll(int pageIndex,int pageSize)
+        public async Task<List<T>> GetAll(PageParameters pageParameters)
         {
             using (var data = new FinancialContext(_optionsBuilder))
             {
-                var items = await data.Set<T>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                var items = await data.Set<T>().Skip((pageParameters.PageIndex - 1) * pageParameters.PageSize).Take(pageParameters.PageSize).ToListAsync();
                 return items;
             }
         }

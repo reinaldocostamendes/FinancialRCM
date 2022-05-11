@@ -1,5 +1,7 @@
 ﻿using Domain.Interfaces;
+using Domain.Services.Interfaces;
 using Entities.Entities;
+using Entities.PageParam;
 using Entities.Validadors;
 using System;
 using System.Collections.Generic;
@@ -9,33 +11,49 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public class DocumentService : IDocument
+    public class DocumentService : ServiceBase<Document>, IDocumentService
     {
+        private readonly IDocumentRepository _documentRepository;
+
+        public DocumentService(IDocumentRepository documentRepository)
+        {
+            _documentRepository = documentRepository;
+        }
+
         public async Task AddDocument(Document document)
         {
             var validator = new DocumentValidator();
             var result = validator.Validate(document);
             if (!result.IsValid)
             {
-               throw new Exception();
+                throw new Exception();
             }
-            await AddDocument(document);
-          
+            await _documentRepository.AddDocument(document);
+        }
+
+        public Task Delete(Document entity)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task DeleteDocument(Guid id)
         {
-            await DeleteDocument(id);
+            await _documentRepository.DeleteDocument(id);
         }
 
-        public async Task<List<Document>> GetAllDocuments(int pageIndex, int pageSize)
+        public Task<List<Document>> GetAll(PageParameters pageParameters)
         {
-            return await GetAllDocuments(pageIndex,pageSize);
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<Document>> GetAllDocuments(PageParameters pageParameters)
+        {
+            return await _documentRepository.GetAllDocuments(pageParameters);
         }
 
         public async Task<Document> GetById(Guid id)
         {
-            return await GetById(id);
+            return await _documentRepository.GetById(id);
         }
 
         public async Task UpdateDocument(Document document)
@@ -46,9 +64,9 @@ namespace Domain.Services
             {
                 throw new Exception();
             }
-            await UpdateDocument(document);
-           
+            await _documentRepository.UpdateDocument(document);
         }
+
         public async Task UpdatePayementDocument(Document document)
         {
             var validator = new DocumentValidator();
@@ -57,12 +75,7 @@ namespace Domain.Services
             {
                 throw new Exception();
             }
-            await UpdatePayementDocument(document);
-          
-
+            await _documentRepository.UpdatePayementDocument(document);
         }
     }
-
-  
-    }
-
+}

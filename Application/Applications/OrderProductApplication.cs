@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Interfaces;
+using Domain.Services.Interfaces;
 using Entities.Entities;
 using Entities.Validadors;
 using Infrastruture.Repository;
@@ -15,10 +16,10 @@ namespace Application.Applications
 {
     public class OrderProductApplication : IOrderProductApplication
     {
-        private readonly OrderProductRepository _iorderProduct;
+        private readonly IOrderProductService _iorderProduct;
         private readonly IMapper _imapper;
 
-        public OrderProductApplication(OrderProductRepository iorderProduct, IMapper imapper)
+        public OrderProductApplication(IOrderProductService iorderProduct, IMapper imapper)
         {
             _iorderProduct = iorderProduct;
             _imapper = imapper;
@@ -44,13 +45,15 @@ namespace Application.Applications
         {
             return await _iorderProduct.GetAllOrderProductsByOrderId(orderId);
         }
+
         public async Task DeleteOrderProduct(Guid id)
         {
-            await _iorderProduct.DeleteOrderProduct(id);    
+            await _iorderProduct.DeleteOrderProduct(id);
         }
-        public async Task UpdateOrder(OrderProducts orderProduct)
+
+        public async Task UpdateOrderProduct(OrderProducts orderProduct)
         {
-            await _iorderProduct.UpdateOrder(orderProduct);
+            await _iorderProduct.UpdateOrderProduct(orderProduct);
         }
     }
 }

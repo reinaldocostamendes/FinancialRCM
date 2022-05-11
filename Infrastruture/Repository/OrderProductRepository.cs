@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastruture.Repository
 {
-    public class OrderProductRepository : GenericRepository<OrderProducts>, IOrderProduct
+    public class OrderProductRepository : GenericRepository<OrderProducts>, IOrderProductRepository
     {
         private readonly DbContextOptions<FinancialContext> dbContextOptions;
 
@@ -22,8 +22,9 @@ namespace Infrastruture.Repository
 
         public async Task AddOrderProduct(OrderProducts orderProducts)
         {
-          await base.Put(orderProducts);  
+            await base.Post(orderProducts);
         }
+
         public async Task<List<OrderProducts>> GetAllOrderProductsByOrderId(Guid orderId)
         {
             using (var db = new FinancialContext(dbContextOptions))
@@ -31,14 +32,21 @@ namespace Infrastruture.Repository
                 return await db.OrderProducts.Where(o => o.OrderId == orderId).AsNoTracking().ToListAsync();
             }
         }
+
         public async Task DeleteOrderProduct(Guid id)
         {
             var orderProduct = await base.GetById(id);
             await base.Delete(orderProduct);
         }
+
         public async Task UpdateOrder(OrderProducts orderProduct)
         {
-            await base.Put(orderProduct);   
+            await base.Put(orderProduct);
+        }
+
+        public async Task UpdateOrderProduct(OrderProducts orderProduct)
+        {
+            await base.Put(orderProduct);
         }
     }
 }

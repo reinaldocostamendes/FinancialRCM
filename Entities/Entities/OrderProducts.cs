@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entities.Entities
@@ -22,6 +23,7 @@ namespace Entities.Entities
         public decimal Value { get; set; }
         [Column("Total")]
         public decimal Total { get; set; }
+        [JsonIgnore]
         public virtual Order Order { get; set; }
     }
 }

@@ -2,12 +2,16 @@
 using Application.Interfaces;
 using Application.ViewModel;
 using AutoMapper;
+using CashBook_Error.API.Contracts;
 using Entities.Entities;
+using Entities.PageParam;
 using FIinancial_API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FIinancial_API.Controllers
@@ -34,21 +38,16 @@ namespace FIinancial_API.Controllers
              
             catch (Exception ex)
             {
-                return BadRequest(ex.Message+" Not Possible to put CashBook");
+                return BadRequest(new CashBookErrorMessage("600", ex.Message, cashbook));
             }
             return Ok();
          }
         [HttpGet]
-        public async Task<CashBookViewModel> GetAll(int pageIndex, int pageSize)
+        public async Task<CashBookViewModel> GetAll([FromQuery] PageParameters pageParameters)
         {
             CashBookViewModel cbvm = new CashBookViewModel();
-            var cbks =  await _icashBookApplication.GetAllCashBook(pageIndex,pageSize);
-            var amount = 0.0;
-            foreach (var cashbook in cbks)
-            {
-                amount += (double)cashbook.Value;
-            }
-           
+            var cbks =  await _icashBookApplication.GetAllCashBook(pageParameters);
+            var amount = cbks.Sum(p => p.Value);     
             cbvm.Models = cbks;
             cbvm.Total = (decimal)amount;
             return  cbvm; 
@@ -65,29 +64,25 @@ namespace FIinancial_API.Controllers
             return Ok(cashBook);
         }
 
-        [HttpGet("{documentId}")]
+        [HttpGet("ByOrigId/{originId}")]
         public async Task<ActionResult<CashBook>> GetByOrigintId(Guid documentId)
         {
             var cashbook = await _icashBookApplication.GetCashBookOriginId(documentId);
             if(cashbook == null) { return NoContent(); }    
             return Ok(cashbook);    
         }
+
         [HttpPut]
-        public async Task<IActionResult> Put(CashBookDTO cashbook)
+        public async Task<IActionResult> Put([FromBody] CashBookDTO cashbook)
         {
             try
             {
-                if(cashbook.Origin !=1 && cashbook.Origin != 2)
-                {
-                    await _icashBookApplication.PutCashBook(cashbook);
-                }
-                else
-                {
-                    return BadRequest("Not Possible to change integrated cashbook!");
-                }              
-            }catch(Exception ex)
+                await _icashBookApplication.PutCashBook(cashbook);
+            }
+            catch(Exception ex)
             {
-                throw new Exception(ex.Message);
+                var result = new CashBookErrorMessage("600", $"Not possible to put CashBook: {ex.Message}", cashbook);
+                return BadRequest(result);
             }
             return Ok("Upated successfull!");
         }

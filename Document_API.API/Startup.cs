@@ -2,6 +2,7 @@ using Application.Applications;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Services;
+using Domain.Services.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastruture.Configurations;
 using Infrastruture.Repository;
@@ -34,7 +35,6 @@ namespace Document_API.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -47,21 +47,21 @@ namespace Document_API.API
             services.AddDbContext<FinancialContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<CashBookRepository>();
             services.AddScoped<DocumentRepository>();
-            services.AddScoped<OrderRepository>();
-            services.AddScoped<OrderProductRepository>();
+            // services.AddScoped<OrderRepository>();
+            //  services.AddScoped<OrderProductRepository>();
 
-            services.AddScoped<ICashBook, CashBookService>();
-            services.AddScoped<IDocument, DocumentService>();
-            services.AddScoped<IOrder, OrderService>();
-            services.AddScoped<IOrderProduct, OrderProductService>();
+            //  services.AddScoped<CashBookService>();
+            services.AddScoped<IDocumentService, DocumentService>();
+            //  services.AddScoped<ICashBookRepository, CashBookRepository>();
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
+            //  services.AddScoped<IOrderRepository, OrderRepository>();
+            // services.AddScoped<IOrderProductRepository, OrderProductRepository>();
 
-
-            services.AddScoped<ICashBookApplication, CashBookApplication>();
+            //  services.AddScoped<ICashBookApplication, CashBookApplication>();
             services.AddScoped<IDocumentApplication, DocumentApplication>();
-            services.AddScoped<IOrderApplication, OrderApplication>();
-            services.AddScoped<IOrderProductApplication, OrderProductApplication>();
+            //  services.AddScoped<IOrderApplication, OrderApplication>();
+            //  services.AddScoped<IOrderProductApplication, OrderProductApplication>();
 
             services.AddControllers()
 
