@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "b12e6adb-8df3-494c-b5b7-bb28f61c4647",
+		"name": "Document",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": []
+		},
+		{
+			"name": "https://localhost:44343/api/Documents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"002459\",\r\n  \"date\": \"2022-05-13T09:24:35.593Z\",\r\n  \"documentType\": 1,\r\n  \"operation\": 1,\r\n  \"payed\": true,\r\n  \"payementDate\": \"2022-05-13T09:24:35.593Z\",\r\n  \"description\": \"Teste\",\r\n  \"total\": 10,\r\n  \"observation\": \"Teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44343/api/Documents",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44343",
+					"path": [
+						"api",
+						"Documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44343/api/Documents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44343/api/Documents",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44343",
+					"path": [
+						"api",
+						"Documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44343/api/Documents",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"id\": \"cdefd0d8-058e-4ee4-a785-858df5a7c9e4\",\r\n    \"number\": \"0024595\",\r\n    \"date\": \"2022-05-13T09:24:35.593+00:00\",\r\n    \"documentType\": 1,\r\n    \"operation\": 1,\r\n    \"payed\": true,\r\n    \"paymentDate\": \"2022-05-13T09:24:35.593+00:00\",\r\n    \"description\": \"Teste alterado Postman\",\r\n    \"total\": 30,\r\n    \"observation\": \"Teste alterado Postman\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44343/api/Documents",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44343",
+					"path": [
+						"api",
+						"Documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44343/api/Documents?id=fa17ffac-cfd0-4961-b091-66b9a83b8d17",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44343/api/Documents?id=fa17ffac-cfd0-4961-b091-66b9a83b8d17",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44343",
+					"path": [
+						"api",
+						"Documents"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "fa17ffac-cfd0-4961-b091-66b9a83b8d17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44343/api/Documents/cdefd0d8-058e-4ee4-a785-858df5a7c9e4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44343/api/Documents/cdefd0d8-058e-4ee4-a785-858df5a7c9e4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44343",
+					"path": [
+						"api",
+						"Documents",
+						"cdefd0d8-058e-4ee4-a785-858df5a7c9e4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44343/api/Documents/SetPayment",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"cdefd0d8-058e-4ee4-a785-858df5a7c9e4\",\r\n  \"payed\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44343/api/Documents/SetPayment",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44343",
+					"path": [
+						"api",
+						"Documents",
+						"SetPayment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

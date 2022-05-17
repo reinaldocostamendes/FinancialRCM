@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "58b7815d-7067-45f4-b52a-033c7944d747",
+		"name": "Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:44351/api/Orders",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": 120,\r\n  \"date\": \"2022-05-13T10:02:40.323Z\",\r\n  \"deliveryDate\": \"2022-05-13T10:02:40.323Z\",\r\n  \"orderProducts\": [\r\n    {\r\n      \"productDescription\": \"Produto de teste postman\",\r\n      \"productCategory\": 2,\r\n      \"quantity\": 2,\r\n      \"value\": 20\r\n    }\r\n  ],\r\n  \"client\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"clientDescription\": \"Cliente teste Postaman\",\r\n  \"clientEmail\": \"teste@cliente.pt\",\r\n  \"clientPhone\": \"9000009\",\r\n  \"status\": 1,\r\n  \"street\": \"Aaaaa\",\r\n  \"streetNumber\": \"2\",\r\n  \"sector\": \"BBB\",\r\n  \"complement\": \"2\",\r\n  \"city\": \"BB\",\r\n  \"state\": \"SS\",\r\n  \"discount\": 1,\r\n  \"costValue\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44351/api/Orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44351",
+					"path": [
+						"api",
+						"Orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44351/api/Orders?PageIndex=1&PageSize=5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44351/api/Orders?PageIndex=1&PageSize=5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44351",
+					"path": [
+						"api",
+						"Orders"
+					],
+					"query": [
+						{
+							"key": "PageIndex",
+							"value": "1"
+						},
+						{
+							"key": "PageSize",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44351/api/Orders",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"id\": \"58bc29eb-3bbd-4cdc-b2d5-2f06e2a593cb\",\r\n    \"code\": 120,\r\n    \"date\": \"2022-05-13T10:02:40.323+00:00\",\r\n    \"deliveryDate\": \"2022-05-13T10:02:40.323+00:00\",\r\n    \"client\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"clientDescription\": \"Cliente teste\",\r\n    \"clientEmail\": \"teste@cliente.pt\",\r\n    \"clientPhone\": \"9000009\",\r\n    \"status\": 1,\r\n    \"street\": \"Aaaaa\",\r\n    \"streetNumber\": \"2\",\r\n    \"sector\": \"BBB\",\r\n    \"complement\": \"2\",\r\n    \"city\": \"BB\",\r\n    \"state\": \"SS\",\r\n    \"productsValues\": 40,\r\n    \"discount\": 1,\r\n    \"costValue\": 10,\r\n    \"totalValue\": 39,\r\n    \"orderProducts\": [\r\n      {\r\n        \"id\": \"d33e69c6-7abc-4ade-8b3e-ed0dfb1440a1\",\r\n        \"orderId\": \"58bc29eb-3bbd-4cdc-b2d5-2f06e2a593cb\",\r\n        \"productId\": \"bd95bce2-f0ec-4d41-be43-25939e7d3453\",\r\n        \"productDescription\": \"Produto de teste\",\r\n        \"productCategory\": 2,\r\n        \"quantity\": 2,\r\n        \"value\": 23,\r\n        \"total\": 40\r\n      }\r\n    ]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44351/api/Orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44351",
+					"path": [
+						"api",
+						"Orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44351/api/Orders?id=58bc29eb-3bbd-4cdc-b2d5-2f06e2a593cb",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44351/api/Orders?id=58bc29eb-3bbd-4cdc-b2d5-2f06e2a593cb",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44351",
+					"path": [
+						"api",
+						"Orders"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "58bc29eb-3bbd-4cdc-b2d5-2f06e2a593cb"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44351/api/Orders/ClientId?id=3fa85f64-5717-4562-b3fc-2c963f66afa6",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44351/api/Orders/ClientId?id=3fa85f64-5717-4562-b3fc-2c963f66afa6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44351",
+					"path": [
+						"api",
+						"Orders",
+						"ClientId"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44351/api/Orders/ChangeStatus",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"092e01b4-bf14-46f6-b0c8-795a1a279209\",\r\n  \"status\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44351/api/Orders/ChangeStatus",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44351",
+					"path": [
+						"api",
+						"Orders",
+						"ChangeStatus"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

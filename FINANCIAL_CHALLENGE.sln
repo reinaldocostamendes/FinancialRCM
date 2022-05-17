@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{59DF
 		..\..\..\OneDrive\Área de Trabalho\PostMan\Order.postman_collection.json = ..\..\..\OneDrive\Área de Trabalho\PostMan\Order.postman_collection.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostmanFiles", "PostmanFiles\PostmanFiles.csproj", "{F5502389-7CB9-4A01-986F-808E98167230}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{99BF02F0-EFD6-43BD-9DC1-EE999D41F3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99BF02F0-EFD6-43BD-9DC1-EE999D41F3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99BF02F0-EFD6-43BD-9DC1-EE999D41F3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5502389-7CB9-4A01-986F-808E98167230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5502389-7CB9-4A01-986F-808E98167230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5502389-7CB9-4A01-986F-808E98167230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5502389-7CB9-4A01-986F-808E98167230}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "b61a5bb4-405b-403d-bbf8-d80db73bda35",
+		"name": "CashBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:44323/api/CashBooks?PageIndex=1&PageSize=5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44323/api/CashBooks?PageIndex=1&PageSize=5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"CashBooks"
+					],
+					"query": [
+						{
+							"key": "PageIndex",
+							"value": "1"
+						},
+						{
+							"key": "PageSize",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44323/api/CashBooks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"origin\": 0,\r\n  \"originId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"description\": \"Teste\",\r\n  \"type\": 1,\r\n  \"value\": -245\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44323/api/CashBooks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"CashBooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44323/api/CashBooks",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n      \"id\": \"a1532c10-6329-492f-2ed5-08da2cfdf9e8\",\r\n      \"origin\": 0,\r\n      \"originId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"description\": \"string\",\r\n      \"type\": 1,\r\n      \"value\": -350\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44323/api/CashBooks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"CashBooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44323/api/CashBooks/7bc1cf82-8d23-42aa-673b-08da27705256",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44323/api/CashBooks/7bc1cf82-8d23-42aa-673b-08da27705256",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"CashBooks",
+						"7bc1cf82-8d23-42aa-673b-08da27705256"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44323/api/CashBooks/ByOrigId?originId=e673b30f-4a0d-498f-9fde-5a97d24e665f",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44323/api/CashBooks/ByOrigId?originId=e673b30f-4a0d-498f-9fde-5a97d24e665f",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44323",
+					"path": [
+						"api",
+						"CashBooks",
+						"ByOrigId"
+					],
+					"query": [
+						{
+							"key": "originId",
+							"value": "e673b30f-4a0d-498f-9fde-5a97d24e665f"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
