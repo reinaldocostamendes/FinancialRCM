@@ -12,6 +12,5 @@
             Message = message;
             Contract = contract;
         }
-
     }
 }

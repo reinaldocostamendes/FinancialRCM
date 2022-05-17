@@ -67,7 +67,7 @@ namespace Domain.Services
             var validator = new OrderValidator();
             var result = validator.Validate(order);
             if (!result.IsValid) { throw new Exception(); }
-            await _orderRepository.UpdateOrder(order);
+            await UpdateOrder(order);
         }
     }
 }

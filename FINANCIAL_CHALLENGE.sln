@@ -31,7 +31,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UNIT_TEST", "UNIT_TEST", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projectc_Unit_Test", "Projectc_Unit_Test\Projectc_Unit_Test.csproj", "{EFD8F698-EBA4-4CA5-A761-8F092A8CC7EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_Helper", "Project_Helper\Project_Helper.csproj", "{99BF02F0-EFD6-43BD-9DC1-EE999D41F3D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_Helper", "Project_Helper\Project_Helper.csproj", "{99BF02F0-EFD6-43BD-9DC1-EE999D41F3D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{59DF6B55-968F-4559-BEB2-F7C7E3335C40}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\Área de Trabalho\PostMan\CashBook.postman_collection.json = ..\..\..\OneDrive\Área de Trabalho\PostMan\CashBook.postman_collection.json
+		..\..\..\OneDrive\Área de Trabalho\PostMan\Document.postman_collection.json = ..\..\..\OneDrive\Área de Trabalho\PostMan\Document.postman_collection.json
+		..\..\..\OneDrive\Área de Trabalho\PostMan\Order.postman_collection.json = ..\..\..\OneDrive\Área de Trabalho\PostMan\Order.postman_collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

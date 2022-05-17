@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "e+zVJbPZytwcYwjaJC8Cw8maI+r5XCN4lBdgjmwMh5xkvgitymDMptBOavIyE1rgnZIwyAqIj080GTNf4jsykQ==",
+  "dgSpecHash": "R153bwap1jZhIrVvT2Mx+2sxP9YZHB5p9g3BF5fTYq8TLHzqU0++A8jvGdmnrwizqPL0Amsxyhc9/0PWLMKpUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\rcm_r\\source\\repos\\FINANCIAL_CHALLENGE\\Document_API.API\\Document_API.API.csproj",
   "expectedPackageFiles": [
@@ -148,7 +148,7 @@
     "C:\\Users\\rcm_r\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\rcm_r\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\rcm_r\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\rcm_r\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.16\\microsoft.netcore.app.host.win-x64.5.0.16.nupkg.sha512"
+    "C:\\Users\\rcm_r\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
   ],
   "logs": []
 }

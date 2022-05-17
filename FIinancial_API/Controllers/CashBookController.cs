@@ -22,54 +22,54 @@ namespace FIinancial_API.Controllers
     {
         private readonly ICashBookApplication _icashBookApplication;
 
-
         public CashBookController(ICashBookApplication icashBookApplication)
         {
             _icashBookApplication = icashBookApplication;
-     
         }
-         [HttpPost]
-         public async Task<IActionResult> Post([FromBody] CashBookDTO cashbook)
-         {
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CashBookDTO cashbook)
+        {
             try
             {
                 await _icashBookApplication.AddCashBook(cashbook);
             }
-             
             catch (Exception ex)
             {
                 return BadRequest(new CashBookErrorMessage("600", ex.Message, cashbook));
             }
-            return Ok();
-         }
+            return Ok(cashbook + "Added SuccessFull");
+        }
+
         [HttpGet]
         public async Task<CashBookViewModel> GetAll([FromQuery] PageParameters pageParameters)
         {
             CashBookViewModel cbvm = new CashBookViewModel();
-            var cbks =  await _icashBookApplication.GetAllCashBook(pageParameters);
-            var amount = cbks.Sum(p => p.Value);     
+            var cbks = await _icashBookApplication.GetAllCashBook(pageParameters);
+            var amount = cbks.Sum(p => p.Value);
             cbvm.Models = cbks;
             cbvm.Total = (decimal)amount;
-            return  cbvm; 
+            return cbvm;
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<CashBook>> GetById(Guid id)
         {
             var cashBook = await _icashBookApplication.GetCashBookById(id);
-            if(cashBook == null)
+            if (cashBook == null)
             {
-                return  NoContent();
-            }    
-                
+                return NoContent();
+            }
+
             return Ok(cashBook);
         }
 
-        [HttpGet("ByOrigId/{originId}")]
-        public async Task<ActionResult<CashBook>> GetByOrigintId(Guid documentId)
+        [HttpGet("ByOrigId")]
+        public async Task<ActionResult<CashBook>> GetByOrigintId(Guid OriginId)
         {
-            var cashbook = await _icashBookApplication.GetCashBookOriginId(documentId);
-            if(cashbook == null) { return NoContent(); }    
-            return Ok(cashbook);    
+            var cashbook = await _icashBookApplication.GetCashBookOriginId(OriginId);
+            if (cashbook == null) { return NoContent(); }
+            return Ok(cashbook);
         }
 
         [HttpPut]
@@ -79,7 +79,7 @@ namespace FIinancial_API.Controllers
             {
                 await _icashBookApplication.PutCashBook(cashbook);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var result = new CashBookErrorMessage("600", $"Not possible to put CashBook: {ex.Message}", cashbook);
                 return BadRequest(result);

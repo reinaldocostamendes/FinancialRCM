@@ -19,7 +19,7 @@ namespace Entities.Validadors
             RuleFor(c => c.Type).NotNull().WithMessage("Type is requirid");
             RuleFor(c => c.Value).NotNull().WithMessage("Value is requirid");
             When(cashBook => cashBook.Type == Enums.CashBookType.RECEIVEMENT, () => { RuleFor(cashBook => cashBook.Value).
-                GreaterThan(0).WithMessage("CashBook type Payment must be greater than 0"); });
+                GreaterThanOrEqualTo(0).WithMessage("CashBook type Payment must be greater than 0"); });
             When(cashBook => cashBook.Type == Enums.CashBookType.PAYMENT, () =>
             {
                 RuleFor(cashBook => cashBook.Value).

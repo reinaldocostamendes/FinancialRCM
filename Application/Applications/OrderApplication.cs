@@ -25,12 +25,18 @@ namespace Application.Applications
         private readonly IOrderService _iorder;
         private readonly IOrderProductService _iorderProduct;
         private readonly IMapper _imapper;
+        private string apiUrl;
+        private HttpClient client;
 
         public OrderApplication(IOrderService iorder, IOrderProductService iorderProduc, IMapper imapper)
         {
             _iorder = iorder;
             _imapper = imapper;
             _iorderProduct = iorderProduc;
+
+            apiUrl = "https://localhost:44355/api/CashBooks";
+
+            client = new HttpClient();
         }
 
         public async Task AddOrder(OrderDTO order)
@@ -142,10 +148,6 @@ namespace Application.Applications
             if (om == null) { throw new Exception("Order not exist"); }
             if (om.Status == Entities.Enums.OrderStatus.FINISHED)
             {
-                string apiUrl = "https://localhost:5001/api/CashBooks";
-
-                var client = new HttpClient();
-
                 var odto = new CashBookDTO();
                 odto.Origin = 1;
                 odto.OriginId = om.Id;
@@ -231,9 +233,6 @@ namespace Application.Applications
                 }
                 throw new Exception(message);
             }
-            string apiUrl = "https://localhost:5001/api/CashBooks";
-
-            var client = new HttpClient();
 
             var odto = new CashBookDTO()
             {
@@ -260,17 +259,11 @@ namespace Application.Applications
 
         public async Task UpdateOrderStatus(Guid id, OrderStatus orderStatus)
         {
-            var om = await _iorder.GetById(id);
-            var validator = new OrderValidator();
-            var result = validator.Validate(om);
-            if (!result.IsValid)
+            var om = await _iorder.GetByIdOrder(id);
+
+            if (om == null)
             {
-                var message = "";
-                foreach (var item in result.Errors)
-                {
-                    message += item.ToString() + "\n";
-                }
-                throw new Exception(message);
+                throw new Exception("Order Not Found!");
             }
             var products = _iorderProduct.GetAllOrderProductsByOrderId(id);
 
@@ -306,10 +299,6 @@ namespace Application.Applications
             }
             if (orderStatus == Entities.Enums.OrderStatus.FINISHED)
             {
-                string apiUrl = "https://localhost:5001/api/CashBooks";
-
-                var client = new HttpClient();
-
                 var odto = new CashBookDTO()
                 {
                     Origin = 1,

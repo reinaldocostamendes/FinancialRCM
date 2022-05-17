@@ -22,18 +22,20 @@ namespace Application.Applications
     {
         private readonly IDocumentService _idocument;
         private readonly IMapper _imapper;
+        private string apiUrl;
+        private HttpClient client;
 
         public DocumentApplication(IDocumentService idocument, IMapper imapper)
         {
             _idocument = idocument;
             _imapper = imapper;
+            apiUrl = "https://localhost:44355/api/CashBooks";
+
+            client = new HttpClient();
         }
 
         public async Task AddDocument(DocumentDTO document)
         {
-            string apiUrl = "https://localhost:5001/api/CashBooks";
-
-            var client = new HttpClient();
             var d = new Document();
             var dm = _imapper.Map(document, d);
             var dmId = Guid.NewGuid();
@@ -85,9 +87,6 @@ namespace Application.Applications
             {
                 throw new Exception("This Doc not exists!");
             }
-            string apiUrl = "https://localhost:5001/api/CashBooks";
-
-            var client = new HttpClient();
 
             var odto = new CashBookDTO();
             odto.Origin = 1;
@@ -123,9 +122,6 @@ namespace Application.Applications
 
         public async Task UpdateDocument(Document document)
         {
-            string apiUrl = "https://localhost:5001/api/CashBooks";
-
-            var client = new HttpClient();
             var d = await _idocument.GetById(document.Id);
 
             var odto = new CashBookDTO();
@@ -136,12 +132,12 @@ namespace Application.Applications
             {
                 document.PaymentDate = DateTime.Now;
                 odto.Value = document.Total - d.Total;
-                odto.Type = 2;
+                odto.Type = ((document.Total - d.Total) > 0) ? 2 : 1;
             }
             else
             {
-                odto.Value = -document.Total - d.Total;
-                odto.Type = 1;
+                odto.Value = document.Total - d.Total;
+                odto.Type = odto.Type = ((document.Total - d.Total) > 0) ? 2 : 1;
             }
 
             var validator = new DocumentValidator();
@@ -178,16 +174,12 @@ namespace Application.Applications
             d.Payed = pvm.Payed;
             d.PaymentDate = DateTimeOffset.Now;
 
-            string apiUrl = "https://localhost:5001/api/CashBooks";
-
-            var client = new HttpClient();
-
             var odto = new CashBookDTO();
             odto.Origin = 1;
             odto.OriginId = d.Id;
             odto.Description = "Document:" + d.Number;
 
-            odto.Value = (pvm.Payed == true) ? d.Total : -d.Total;
+            odto.Value = (pvm.Payed == true) ? -d.Total : d.Total;
             odto.Type = (pvm.Payed == true) ? 1 : 2;
 
             // var jsonObject = Newtonsoft.Json.JsonConvert.SerializeObject(odto);
